@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выживание Хол тим - Официальный сайт</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-icon">⚔️</span>
+                <span class="logo-text">ХОЛ ТИМ</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Главная</a></li>
+                <li><a href="#shop" class="nav-link">Магазин</a></li>
+                <li><a href="#rules" class="nav-link">Правила</a></li>
+                <li><a href="#updates" class="nav-link">Обновления</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="cart-btn" onclick="toggleCart()">
+                    🛒 Корзина <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Герой секция -->
+    <section id="home" class="hero">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="server-badge">🟢 Онлайн: 247 игроков</div>
+            <h1 class="main-title">ВЫЖИВАНИЕ<br><span class="highlight">ХОЛ ТИМ</span></h1>
+            <p class="subtitle">Лучший сервер выживания с уникальной экономикой и анархией</p>
+            
+            <div class="ip-container">
+                <div class="ip-box">
+                    <span class="ip-label">IP СЕРВЕРА</span>
+                    <span class="ip-address" id="serverIp">play.holteam.ru</span>
+                </div>
+                <button class="copy-ip-btn" onclick="copyIP()">
+                    <span>📋 Копировать</span>
+                </button>
+            </div>
+            
+            <div class="quick-stats">
+                <div class="stat">
+                    <span class="stat-value">15K+</span>
+                    <span class="stat-label">Игроков</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">99.9%</span>
+                    <span class="stat-label">Аптайм</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">1.20.4</span>
+                    <span class="stat-label">Версия</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Магазин / Донат -->
+    <section id="shop" class="shop-section">
+        <div class="container">
+            <h2 class="section-title">💎 Магазин привилегий</h2>
+            <p class="section-subtitle">Выбери свой путь на сервере</p>
+            
+            <!-- Категории -->
+            <div class="shop-categories">
+                <button class="category-btn active" onclick="filterCategory('all')">Все</button>
+                <button class="category-btn" onclick="filterCategory('vip')">VIP</button>
+                <button class="category-btn" onclick="filterCategory('premium')">Premium</button>
+                <button class="category-btn" onclick="filterCategory('legend')">Legend</button>
+                <button class="category-btn" onclick="filterCategory('special')">Особые</button>
+            </div>
+            
+            <!-- Товары -->
+            <div class="products-grid" id="productsGrid">
+                <!-- VIP 7 дней -->
+                <div class="product-card" data-category="vip">
+                    <div class="product-badge vip">VIP</div>
+                    <div class="product-header">
+                        <h3>VIP</h3>
+                        <div class="duration">7 дней</div>
+                    </div>
+                    <div class="product-price">
+                        <span class="amount">1,500</span>
+                        <span class="currency">₽</span>
+                    </div>
+                    <ul class="product-features">
+                        <li>✅ Префикс [VIP]</li>
+                        <li>✅ 3 дома</li>
+                        <li>✅ Кит каждые 24ч</li>
+                        <li>✅ Цветной ник</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('VIP 7 дней', 1500, 'vip')">
+                        В корзину
+                    </button>
+                </div>
+
+                <!-- VIP 30 дней -->
+                <div class="product-card" data-category="vip">
+                    <div class="product-badge vip">VIP</div>
+                    <div class="product-header">
+                        <h3>VIP</h3>
+                        <div class="duration">30 дней</div>
+                    </div>
+                    <div class="product-price">
+                        <span class="amount">4,000</span>
+                        <span class="currency">₽</span>
+                    </div>
+                    <ul class="product-features">
+                        <li>✅ Все возможности 7д</li>
+                        <li>✅ 5 домов</li>
+                        <li>✅ Кит каждые 12ч</li>
+                        <li>✅ /fly на спавне</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('VIP 30 дней', 4000, 'vip')">
+                        В корзину
+                    </button>
+                </div>
+
+                <!-- Выживальщик -->
+                <div class="product-card popular" data-category="premium">
+                    <div class="popular-tag">ХИТ</div>
+                    <div class="product-badge premium">Выживальщик</div>
+                    <div class="product-header">
+                        <h3>Выживальщик</h3>
+                        <div class="duration">Навсегда</div>
+                    </div>
+                    <div class="product-price">
+                        <span class="amount">7,500</span>
+                        <span class="currency">₽</span>
+                    </div>
+                    <ul class="product-features">
+                        <li>✅ Префикс [Выживальщик]</li>
+                        <li>✅ 10 домов</li>
+                        <li>✅ /craft & /enderchest</li>
+                        <li>✅ Уникальный питомец</li>
+                        <li>✅ Приоритетный вход</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Выживальщик', 7500, 'premium')">
+                        В корзину
+                    </button>
+                </div>
+
+                <!-- Дорян -->
+                <div class="product-card" data-category="premium">
+                    <div class="product-badge premium">Дорян</div>
+                    <div class="product-header">
+                        <h3>Дорян</h3>
+                        <div class="duration">Навсегда</div>
+                    </div>
+                    <div class="product-price">
+                        <span class="amount">9,000</span>
+                        <span class="currency">₽</span>
+                    </div>
+                    <ul class="product-features">
+                        <li>✅ Префикс [Дорян]</li>
+                        <li>✅ 15 домов</li>
+                        <li>✅ /fly везде</li>
+                        <li>✅ /hat & /back</li>
+                        <li>✅ Эксклюзивный кит</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Дорян', 9000, 'premium')">
+                        В корзину
+                    </button>
+                </div>
+
+                <!-- Украинский -->
+                <div class="product-card special" data-category="special">
+                    <div class="product-badge special">Український</div>
+                    <div class="product-header">
+                        <h3>Український</h3>
+                        <div class="duration">Навсегда</div>
+                    </div>
+                    <div class="product-price">
+                        <span class="amount">8,500</span>
+                        <span class="currency">₽</span>
+                    </div>
+                    <ul class="product-features">
+                        <li>✅ Префикс [Український]</li>
+                        <li>✅ 12 домов</li>
+                        <li>✅ Уникальная косметика</li>
+                        <li>✅ Доступ к ивентам</li>
+                        <li>✅ Роль в Discord</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Український', 8500, 'special')">
+                        В корзину
+                    </button>
+                </div>
+
+                <!-- Планский -->
+                <div class="product-card" data-category="special">
+                    <div class="product-badge special">Планский</div>
+                    <div class="product-header">
+                        <h3>Планский</h3>
+                        <div class="duration">Навсегда</div>
+                    </div>
+                    <div class="product-price">
+                        <span class="amount">8,000</span>
+                        <span class="currency">₽</span>
+                    </div>
+                    <ul class="product-features">
+                        <li>✅ Префикс [Планский]</li>
+                        <li>✅ 10 домов</li>
+                        <li>✅ /workbench</li>
+                        <li>✅ Особый стиль чата</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Планский', 8000, 'special')">
+                        В корзину
+                    </button>
+                </div>
+
+                <!-- Хол тим -->
+                <div class="product-card legendary" data-category="legend">
+                    <div class="legendary-tag">ЛЕГЕНДА</div>
+                    <div class="product-badge legend">Хол тим</div>
+                    <div class="product-header">
+                        <h3>Хол тим</h3>
+                        <div class="duration">Навсегда</div>
+                    </div>
+                    <div class="product-price">
+                        <span class="amount">15,000</span>
+                        <span class="currency">₽</span>
+                    </div>
+                    <ul class="product-features">
+                        <li>✅ Префикс [Хол тим]</li>
+                        <li>✅ Безлимит домов</li>
+                        <li>✅ /god mode</li>
+                        <li>✅ Личный варп</li>
+                        <li>✅ Зал славы</li>
+                        <li>✅ Бета-тесты</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Хол тим', 15000, 'legend')">
+                        В корзину
+                    </button>
+                </div>
+
+                <!-- Майнт -->
+                <div class="product-card" data-category="legend">
+                    <div class="product-badge legend">Майнт</div>
+                    <div class="product-header">
+                        <h3>Майнт</h3>
+                        <div class="duration">Навсегда</div>
+                    </div>
+                    <div class="product-price">
+                        <span class="amount">12,000</span>
+                        <span class="currency">₽</span>
+                    </div>
+                    <ul class="product-features">
+                        <li>✅ Префикс [Майнт]</li>
+                        <li>✅ 20 домов</li>
+                        <li>✅ Все команды fly</li>
+                        <li>✅ Эксклюзивные предметы</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Майнт', 12000, 'legend')">
+                        В корзину
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Корзина (Modal) -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-overlay" onclick="toggleCart()"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>🛒 Ваша корзина</h2>
+                <button class="close-cart" onclick="toggleCart()">✕</button>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">
+                    <p>Корзина пуста</p>
+                    <small>Добавьте товары из магазина</small>
+                </div>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Итого:</span>
+                    <span class="total-amount" id="totalAmount">0 ₽</span>
+                </div>
+                
+                <div class="payment-methods">
+                    <label>Способ оплаты:</label>
+                    <select id="paymentMethod" class="payment-select">
+                        <option value="card">💳 Банковская карта</option>
+                        <option value="qiwi">🥝 Qiwi</option>
+                        <option value="yoomoney">💰 ЮMoney</option>
+                        <option value="crypto">₿ Криптовалюта</option>
+                    </select>
+                </div>
+                
+                <div class="promo-code">
+                    <input type="text" id="promoInput" placeholder="Промокод" class="promo-input">
+                    <button class="apply-promo" onclick="applyPromo()">Применить</button>
+                </div>
+                
+                <button class="checkout-btn" onclick="checkout()">
+                    Оплатить <span id="checkoutAmount">0 ₽</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Правила -->
+    <section id="rules" class="rules-section">
+        <div class="container">
+            <h2 class="section-title">📜 Правила сервера</h2>
+            
+            <div class="rules-tabs">
+                <button class="rules-tab active" onclick="switchRulesTab('general')">Основные</button>
+                <button class="rules-tab" onclick="switchRulesTab('anarchy')">Анархия</button>
+                <button class="rules-tab" onclick="switchRulesTab('chat')">Чат</button>
+            </div>
+
+            <div id="general" class="rules-content active">
+                <div class="rule-item banned">
+                    <span class="rule-icon">❌</span>
+                    <div class="rule-text">
+                        <h3>Читы запрещены</h3>
+                        <p>KillAura, Fly, Speed - перманентный бан</p>
+                    </div>
+                </div>
+                <div class="rule-item banned">
+                    <span class="rule-icon">❌</span>
+                    <div class="rule-text">
+                        <h3>Абуз багов</h3>
+                        <p>Использование ошибок - бан от 7 дней</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="anarchy" class="rules-content">
+                <div class="rule-item allowed">
+                    <span class="rule-icon">✅</span>
+                    <div class="rule-text">
+                        <h3>PvP кроме спавна</h3>
+                        <p>На спавне (100 блоков) PvP отключен</p>
+                    </div>
+                </div>
+                <div class="rule-item allowed">
+                    <span class="rule-icon">✅</span>
+                    <div class="rule-text">
+                        <h3>Гриферство разрешено</h3>
+                        <p>Разрушение баз - часть игры</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chat" class="rules-content">
+                <div class="rule-item allowed">
+                    <span class="rule-icon">✅</span>
+                    <div class="rule-text">
+                        <h3>Троллинг разрешен</h3>
+                        <p>Но без оскорблений по признакам</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Обновления -->
+    <section id="updates" class="updates-section">
+        <div class="container">
+            <h2 class="section-title">🚀 Обновления</h2>
+            
+            <div class="update-banner">
+                <h3>✨ Версия 3.0 - Новая эра</h3>
+                <ul>
+                    <li>🎨 Новый дизайн сайта</li>
+                    <li>💎 Система доната с корзиной</li>
+                    <li>⚔️ Улучшенная анархия</li>
+                    <li>🛡️ Античит v4.0</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Выживание Хол тим</p>
+            <p>Не является продуктом Mojang</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
